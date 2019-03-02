@@ -1,0 +1,27 @@
+Use mtcars.
+
+Exercise 1
+Print out the hp column using the select() function. 
+
+Exercise 2
+Print out all but the hp column using the select() function.
+
+Exercise 3
+Print out the mpg, hp, vs, am, gear columns. Consider using the colon : symbol to simplfy selection of consecutive columns.
+
+Exercise 4
+Create a new variable in the mycars data frame km_per_litre using the mutate() function. Hint: 1 mpg is 0.425 km/l.
+
+Exercise 5
+Randomly select and print half the observations of mycars. Hint: consider using the sample_frac() function
+
+Exercise 6
+Print out the mycars_s object without any duplicates. Hint: Consider using the distinct() function.
+
+Exercise 7
+Print out from mycars_s object all the observations which have mpg>20 and hp>100.
+
+Exercise 8
+Print out the row corresponding to the Lotus Europa car.
+
+Solutions
