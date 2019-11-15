@@ -1,32 +1,32 @@
-Exercise 1
+Exercise 1 _
 
-Subset the vector, “mtcars[,1]“, for values greater than “15.0“.
+Subset the vector, “mtcars[,1]“, for values greater than “15.0“. _
 
-Exercise 2
+Exercise 2 _
 
-Subset the dataframe, “mtcars” for rows with “mpg” greater than , or equal to, 21 miles per gallon.
+Subset the dataframe, “mtcars” for rows with “mpg” greater than , or equal to, 21 miles per gallon. _
 
-Exercise 3
+Exercise 3 _
 
-Subset “mtcars” for rows wih “cyl” less than “6“, and “gear” exactly equal to “4“.
+Subset “mtcars” for rows wih “cyl” less than “6“, and “gear” exactly equal to “4“. _
 
-Exercise 4
+Exercise 4 _
 
-Subset “mtcars” for rows greater than, or equal to, 21 miles per gallon. Also, select only the columns, “mpg” through “hp“.
+Subset “mtcars” for rows greater than, or equal to, 21 miles per gallon. Also, select only the columns, “mpg” through “hp“. _
 
-Exercise 5
+Exercise 5 _
 
-Subset “airquality” for “Ozone” greater than “28“, or “Temp” greater than “70“. Return the first five rows.
+Subset “airquality” for “Ozone” greater than “28“, or “Temp” greater than “70“. Return the first five rows. _
 
-Exercise 6
+Exercise 6 _
 
-Subset “airquality” for “Ozone” greater than “28“, and “Temp” greater than “70“. Select the columns, “Ozone” and “Temp“. Return the first five rows.
+Subset “airquality” for “Ozone” greater than “28“, and “Temp” greater than “70“. Select the columns, “Ozone” and “Temp“. _ Return the first five rows. _
 
-Exercise 7
+Exercise 7 _
 
 Subset the “CO2” dataframe for “Treatment” values of “chilled“,
 and “uptake” values greater that “15“. Remove the category, “conc“. Return the first 10 rows.
 
-Exercise 8
+Exercise 8 _
 
 Subset “airquality” for “Ozone” greater than “100“. Select the columns “Ozone“, “Temp“, “Month” and “Day” only.
