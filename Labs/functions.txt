@@ -16,4 +16,4 @@ Create a function that given a vector and an integer will return how many times 
 
 Exercise 5
 
-Create a function that given an integer will calculate how many divisors it has (other than 1 and itself). Make the divisors appear by screen.
+Create a function that given an integer will calculate how many divisors it has (other than 1 and itself). Make the divisors appear on screen.

@@ -13,7 +13,7 @@ Exercise 4
 Create a new variable in the mycars data frame km_per_litre using the mutate() function. Hint: 1 mpg is 0.425 km/l.
 
 Exercise 5
-Randomly select and print half the observations of mycars. Hint: consider using the sample_frac() function
+Randomly select and print half the observations of mycars and store it into mycars_s. Hint: consider using the sample_frac() function
 
 Exercise 6
 Print out the mycars_s object without any duplicates. Hint: Consider using the distinct() function.
@@ -21,7 +21,16 @@ Print out the mycars_s object without any duplicates. Hint: Consider using the d
 Exercise 7
 Print out from mycars_s object all the observations which have mpg>20 and hp>100.
 
-Exercise 8
-Print out the row corresponding to the Lotus Europa car.
+Excercise 8
+Transform all columns from original mtcars to character. Consider using mutate_all. If you have dplyr1.0.0 try using mutate+across.
 
-Solutions
+Excercise 9
+Display mtcars mean and median for mpg, hp and consumption.
+
+Excercise 10
+Identify the worst and best economic car. 
+
+
+
+
+

@@ -1353,6 +1353,11 @@ opacity: 0;
 }
 @media print {
 
+@page {
+size: landscape;
+margin: 0;
+}
+
 slides slide {
 display: block !important;
 position: relative;
@@ -3113,7 +3118,7 @@ slide:not(.current) .plotly.html-widget{
         <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
     <hgroup class="auto-fadein">
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
-      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      
       <p data-config-presenter><!-- populated from slide_config.json --></p>
           </hgroup>
   </slide>
@@ -3149,7 +3154,7 @@ x[c(3, 1)]</pre>
 
 <ul>
 <li>omit elements at the specified positions</li>
-<li>you cant mix positive and negative integers in a single subset</li>
+<li>you can’t mix positive and negative integers in a single subset</li>
 </ul>
 
 <pre class = 'prettyprint lang-r'>x &lt;- c(2.1, 4.2, 3.3, 5.4)
@@ -3221,15 +3226,13 @@ a[1:2, ] ## first 2 rows and all columns</pre>
 
 <pre class = 'prettyprint lang-r'>cars[,1] # column by location and all rows</pre>
 
-<pre >##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
-## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
-## [47] 24 24 24 25</pre>
+<pre >##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
+## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25</pre>
 
 <pre class = 'prettyprint lang-r'>cars[,c(&quot;speed&quot;)] # column by name and all rows</pre>
 
-<pre >##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
-## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
-## [47] 24 24 24 25</pre>
+<pre >##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
+## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25</pre>
 
 <pre class = 'prettyprint lang-r'>head(airquality[, c(1:3,5)],4) # first till third and fifth column by location</pre>
 
@@ -3281,6 +3284,87 @@ head(airquality[airquality$Temp&gt;75 &amp; airquality$Wind&gt;12, c(&quot;Temp&
 ## 37   79     6
 ## 40   90     6
 ## 45   80     6</pre>
+
+</article></slide><slide class=""><hgroup><h2>More advanced subsetting</h2></hgroup><article  id="more-advanced-subsetting" class="smaller">
+
+<ul>
+<li>colnames() returns the name of the function</li>
+<li>grepl() returns true, where the condition is found</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'># column names
+colnames(airquality)</pre>
+
+<pre >## [1] &quot;Ozone&quot;   &quot;Solar.R&quot; &quot;Wind&quot;    &quot;Temp&quot;    &quot;Month&quot;   &quot;Day&quot;</pre>
+
+<pre class = 'prettyprint lang-r'># column names with the letter &quot;n&quot;
+grepl(&quot;n&quot;,colnames(airquality))</pre>
+
+<pre >## [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE</pre>
+
+<pre class = 'prettyprint lang-r'>#returning only columns from a dataframe that have &quot;n&quot; in name
+head(airquality[,grepl(&quot;n&quot;,colnames(airquality))],3)</pre>
+
+<pre >##   Ozone Wind Month
+## 1    41  7.4     5
+## 2    36  8.0     5
+## 3    12 12.6     5</pre>
+
+</article></slide><slide class=""><hgroup><h2>More advanced subsetting</h2></hgroup><article  id="more-advanced-subsetting-1" class="smaller">
+
+<ul>
+<li>returning every other column</li>
+<li>use seq() function</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'># number of columns
+ncol(airquality)</pre>
+
+<pre >## [1] 6</pre>
+
+<pre class = 'prettyprint lang-r'>#create sequence
+seq(1,ncol(airquality),by=2)</pre>
+
+<pre >## [1] 1 3 5</pre>
+
+<pre class = 'prettyprint lang-r'>#returning only columns from a dataframe that have &quot;n&quot; in name
+head(airquality[,seq(1,ncol(airquality),by=2)],3)</pre>
+
+<pre >##   Ozone Wind Month
+## 1    41  7.4     5
+## 2    36  8.0     5
+## 3    12 12.6     5</pre>
+
+</article></slide><slide class=""><hgroup><h2>Subsetting with the subset() function</h2></hgroup><article  id="subsetting-with-the-subset-function" class="smaller">
+
+<ul>
+<li>subset(x, subset, select)</li>
+<li>x: dataframe, subset: filter rows, select: columns</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>head(subset(airquality,airquality$Temp&gt;75 &amp; airquality$Wind&gt;12, c(&quot;Temp&quot;,&quot;Month&quot;)), 3)</pre>
+
+<pre >##    Temp Month
+## 29   81     5
+## 37   79     6
+## 40   90     6</pre>
+
+</article></slide><slide class=""><hgroup><h2>List of dataframes</h2></hgroup><article  id="list-of-dataframes" class="smaller">
+
+<pre class = 'prettyprint lang-r'>df1&lt;-airquality
+df2&lt;-mtcars
+l&lt;-list(df1,df2)
+
+#first 6 elements of the airqulity&#39;s Ozone column
+l[[1]][[1]][1:6]</pre>
+
+<pre >## [1] 41 36 12 18 NA 28</pre>
+
+<pre class = 'prettyprint lang-r'>l[[1]]$Ozone[1:6]</pre>
+
+<pre >## [1] 41 36 12 18 NA 28</pre>
+
+<pre class = 'prettyprint lang-r'>#Calculate the mean of these 6 values? Use mean(). Hm, are there any issues?</pre>
 
 </article></slide><slide class=""><hgroup><h2>Lab</h2></hgroup><article  id="lab">
 
