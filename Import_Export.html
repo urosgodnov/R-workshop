@@ -1353,6 +1353,11 @@ opacity: 0;
 }
 @media print {
 
+@page {
+size: landscape;
+margin: 0;
+}
+
 slides slide {
 display: block !important;
 position: relative;
@@ -3113,12 +3118,22 @@ slide:not(.current) .plotly.html-widget{
         <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
     <hgroup class="auto-fadein">
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
-      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      
       <p data-config-presenter><!-- populated from slide_config.json --></p>
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2>Import/export</h2></hgroup><article  class="smaller" id="importexport">
+<slide class=""><hgroup><h2>Working directory</h2></hgroup><article  id="working-directory">
+
+<ul>
+<li>always check what your working directory is</li>
+<li>getwd()</li>
+<li>when making a project, the working directory is the project’s folder</li>
+<li>setting working directory is essential to read and write files</li>
+<li>when nesting folders, use slash &ldquo;/&rdquo;</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Import/export</h2></hgroup><article  class="smaller" id="importexport">
 
 <ul>
 <li>Read.csv()</li>
@@ -3128,17 +3143,6 @@ slide:not(.current) .plotly.html-widget{
 <li>readr and data.table for txt files (can handle compressed files)</li>
 <li>extension for financial data (e.g. Quandl)</li>
 </ul>
-
-<pre class = 'prettyprint lang-r'>mydata = Quandl(&quot;OPEC/ORB&quot;)   ##  OPEC oil prices
-head(mydata)</pre>
-
-<pre >##         Date Value
-## 1 2019-05-02 70.98
-## 2 2019-05-01 72.00
-## 3 2019-04-30 71.91
-## 4 2019-04-29 71.07
-## 5 2019-04-26 72.38
-## 6 2019-04-25 74.04</pre>
 
 </article></slide><slide class=""><hgroup><h2>Import/export</h2></hgroup><article  id="importexport-1">
 
@@ -3164,12 +3168,92 @@ head(mydata)</pre>
 <li>check <a href='https://gallery.shinyapps.io/rioweb/' title=''>https://gallery.shinyapps.io/rioweb/</a> for converting</li>
 </ul>
 
+</article></slide><slide class=""><hgroup><h2>Advanced reading and writing</h2></hgroup><article  id="advanced-reading-and-writing">
+
+<ul>
+<li>cbind</li>
+<li>rbind</li>
+<li>rbind.fill (library(plyr))</li>
+<li>cbind.fill (library(rowr))</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Advanced reading and writing</h2></hgroup><article  class="smaller" id="advanced-reading-and-writing-1">
+
+<pre class = 'prettyprint lang-r'>df1&lt;-data.frame(A=c(1,2,3),B=c(&quot;apple&quot;,&quot;banana&quot;,&quot;lemon&quot;))
+df2&lt;-data.frame(C=c(&quot;car&quot;,&quot;truck&quot;,&quot;bus&quot;))
+cbind(df1,df2)</pre>
+
+<pre >##   A      B     C
+## 1 1  apple   car
+## 2 2 banana truck
+## 3 3  lemon   bus</pre>
+
+<ul>
+<li>rbind: the same column names</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>df1&lt;-data.frame(A=c(1,2,3),B=c(&quot;apple&quot;,&quot;banana&quot;,&quot;lemon&quot;))
+df2&lt;-data.frame(A=c(4,5,6),B=c(&quot;bike&quot;,&quot;plane&quot;,&quot;train&quot;))
+rbind(df1,df2)</pre>
+
+<pre >##   A      B
+## 1 1  apple
+## 2 2 banana
+## 3 3  lemon
+## 4 4   bike
+## 5 5  plane
+## 6 6  train</pre>
+
+</article></slide><slide class=""><hgroup><h2>Advanced reading and writing</h2></hgroup><article  class="smaller" id="advanced-reading-and-writing-2">
+
+<pre class = 'prettyprint lang-r'>df1&lt;-data.frame(A=c(1,2,3),B=c(&quot;apple&quot;,&quot;banana&quot;,&quot;lemon&quot;))
+df2&lt;-data.frame(C=c(&quot;car&quot;,&quot;truck&quot;))
+cbind.fill(df1,df2,fill=NA)</pre>
+
+<pre >##   A      B     C
+## 1 1  apple   car
+## 2 2 banana truck
+## 3 3  lemon  &lt;NA&gt;</pre>
+
+<pre class = 'prettyprint lang-r'>df1&lt;-data.frame(A=c(1,2,3),B=c(&quot;apple&quot;,&quot;banana&quot;,&quot;lemon&quot;))
+df2&lt;-data.frame(C=c(4,5,6),D=c(&quot;bike&quot;,&quot;plane&quot;,&quot;train&quot;))
+rbind.fill(df1,df2)</pre>
+
+<pre >##    A      B  C     D
+## 1  1  apple NA  &lt;NA&gt;
+## 2  2 banana NA  &lt;NA&gt;
+## 3  3  lemon NA  &lt;NA&gt;
+## 4 NA   &lt;NA&gt;  4  bike
+## 5 NA   &lt;NA&gt;  5 plane
+## 6 NA   &lt;NA&gt;  6 train</pre>
+
+</article></slide><slide class=""><hgroup><h2>Advanced reading and writing</h2></hgroup><article  class="smaller" id="advanced-reading-and-writing-3">
+
+<ul>
+<li>reading all files in folders at the same time</li>
+<li>list.files()</li>
+<li>e.g. list.files(pattern = &quot;*.csv&ldquo;, path =&rdquo;./&quot;, full.names = TRUE)</li>
+<li>reading files in a loop</li>
+</ul>
+
+<pre >files &lt;- list.files(pattern = &quot;*.csv&quot;, path = &quot;./Mtcars/&quot;,  full.names = TRUE)
+
+lst_of_frames &lt;-list()
+for (i in 1:length(files)){
+
+  x&lt;-files[i]
+  df&lt;-read.csv2(x)
+  lst_of_frames[[i]]&lt;-df
+}
+dfAll&lt;-do.call(&quot;rbind&quot;,lst_of_frames)</pre>
+
 </article></slide><slide class=""><hgroup><h2>Lab</h2></hgroup><article  id="lab">
 
 <ul>
 <li>export airquality dataset as csv, rds, xlsx, gz</li>
 <li>import NYCTaxi.xlsx with openxlsx and readxl. URL: <a href='https://tinyurl.com/y3wsfuar' title=''>https://tinyurl.com/y3wsfuar</a></li>
 <li>import survey.zip and explore it with summary()</li>
+<li>download and unrar ReadAllFiles.rar into folder AllFiles; import all files, bind them and show first 10 and last 10 rows</li>
 </ul></article></slide>
 
 
